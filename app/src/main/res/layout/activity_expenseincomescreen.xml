@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/backtomainscreen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/backtohomebase"
+        android:layout_width="114dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="149dp"
+        android:layout_marginBottom="260dp"
+        android:backgroundTint="#03A9F4"
+        android:text="Back"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerpassword"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <CheckBox
+        android:id="@+id/checkexpense2"
+        android:layout_width="130dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="74dp"
+        android:layout_marginBottom="9dp"
+        android:text="Income"
+        app:layout_constraintBottom_toTopOf="@+id/amountinput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/checkexpense"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="156dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="7dp"
+        android:text="Your Friendly Neighborhood Budgeting App"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/checkexpense2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="1dp"
+        android:text="Budget Buddy"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkexpense"
+        android:layout_width="125dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="9dp"
+        android:text="Expense"
+        app:layout_constraintBottom_toTopOf="@+id/amountinput"
+        app:layout_constraintEnd_toStartOf="@+id/checkexpense2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintVertical_bias="0.437" />
+
+    <EditText
+        android:id="@+id/amountinput"
+        android:layout_width="208dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="103dp"
+        android:layout_marginBottom="1dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/budgetinput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkexpense2"
+        tools:text="Amount" />
+
+    <EditText
+        android:id="@+id/budgetinput"
+        android:layout_width="211dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="102dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Which Budget?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/amountinput" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
