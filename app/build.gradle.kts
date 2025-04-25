@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.android) version "2.1.0" apply true
     id("com.google.gms.google-services") version "4.4.2" apply true
 }
 
@@ -53,7 +53,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
-    //implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-auth:22.0.0")
  //   implementation("com.google.firebase:firebase-auth-ktx:23.2.0")
     //implementation("com.google.firebase:firebase-auth:22.3.0")
 //    implementation("com.google.firebase:firebase-auth-ktx:22.3.0")
