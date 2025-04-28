@@ -44,9 +44,8 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun navigateToRegisterScreen()
-    {
-        val intent = Intent(this, registerscreen::class.java)
+    private fun navigateToRegisterScreen() {
+        val intent = Intent(this, RegisterScreen::class.java)  // Corrected class name
         startActivity(intent)
     }
 }
