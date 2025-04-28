@@ -7,57 +7,56 @@
     android:layout_height="match_parent"
     tools:context=".BudgetViewScreen">
 
-<TextView
-android:id="@+id/textView5"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_marginStart="101dp"
-android:layout_marginTop="180dp"
-android:layout_marginEnd="101dp"
-android:text="Budget Name:                   Amount Left:"
-android:textSize="20sp"
-app:layout_constraintEnd_toEndOf="parent"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginEnd="101dp"
+        android:text="Your Friendly Neighborhood Budgeting App"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-android:id="@+id/textView7"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_marginStart="101dp"
-android:layout_marginTop="140dp"
-android:layout_marginEnd="101dp"
-android:text="Your Friendly Neighborhood Budgeting App"
-android:textSize="20sp"
-app:layout_constraintEnd_toEndOf="parent"
-app:layout_constraintHorizontal_bias="0.502"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintTop_toTopOf="parent" />
-
-<TextView
-android:id="@+id/textView"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_marginStart="101dp"
-android:layout_marginTop="56dp"
-android:layout_marginEnd="101dp"
-android:layout_marginBottom="1dp"
-android:text="Budget Buddy"
-android:textSize="34sp"
-app:layout_constraintBottom_toTopOf="@+id/textView7"
-app:layout_constraintEnd_toEndOf="parent"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="1dp"
+        android:text="Budget Buddy"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/BudgetData"
-        android:layout_width="409dp"
-        android:layout_height="386dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:orientation="vertical"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="217dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/budgetItem1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Budget Name: Amount Left"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
