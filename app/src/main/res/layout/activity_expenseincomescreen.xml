@@ -98,4 +98,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/amountinput" />
 
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="107dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="285dp"
+        android:backgroundTint="#03A9F4"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/budgetinput"
+        app:layout_constraintVertical_bias="0.0" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,6 @@
 //
 //data class Budget(
 //    val name: String,
-//    val amountLeft: Double
-//)
+//    val amount: Double)
+
 //file used for testing
