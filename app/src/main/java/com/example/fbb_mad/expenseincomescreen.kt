@@ -26,7 +26,8 @@ class expenseincomescreen : AppCompatActivity() {
         val checkIncome = findViewById<CheckBox>(R.id.checkexpense2)
         val amountInput = findViewById<EditText>(R.id.amountinput)
         val budgetInput = findViewById<EditText>(R.id.budgetinput)
-        val submitButton = findViewById<Button>(R.id.submitButton)  // Add a Submit Button
+        val submitButton = findViewById<Button>(R.id.submitButton)
+        val deleteBudgetButton = findViewById<Button>(R.id.deleteBudgetButton)
 
         // Only allow one checkbox at a time (Expense vs Income)
         checkExpense.setOnCheckedChangeListener { _, isChecked ->
@@ -91,6 +92,29 @@ class expenseincomescreen : AppCompatActivity() {
             checkExpense.isChecked = false
             checkIncome.isChecked = false
         }
+
+        // Delete Budget Button click listener
+        deleteBudgetButton.setOnClickListener {
+            val budgetName = budgetInput.text.toString().trim()
+
+            // Validate input
+            if (budgetName.isEmpty()) {
+                showToast("Please select a budget to delete.")
+                return@setOnClickListener
+            }
+
+            // Retrieve budgets
+            val budgets = getBudgetsFromSharedPreferences()
+            val selectedBudget = budgets.find { it.name == budgetName }
+
+            if (selectedBudget == null) {
+                showToast("Budget not found.")
+                return@setOnClickListener
+            }
+
+            // Show confirmation dialog
+            showConfirmationDialog(budgetName, budgets)
+        }
     }
 
     // Function to show toast messages
@@ -114,6 +138,28 @@ class expenseincomescreen : AppCompatActivity() {
         val json = gson.toJson(budgets)
         editor.putString("budgets", json)
         editor.apply()
+    }
+
+    // Function to show the confirmation dialog for deleting a budget
+    private fun showConfirmationDialog(budgetName: String, budgets: List<Budget>) {
+        val dialog = android.app.AlertDialog.Builder(this)
+            .setTitle("Confirm Deletion")
+            .setMessage("Are you sure you want to delete the budget: $budgetName?")
+            .setPositiveButton("Yes") { _, _ ->
+                // Remove the selected budget
+                val updatedBudgets = budgets.filterNot { it.name == budgetName }
+
+                // Save the updated list back to SharedPreferences
+                saveBudgetsToSharedPreferences(updatedBudgets)
+
+                showToast("Budget '$budgetName' deleted successfully.")
+            }
+            .setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+
+        dialog.show()
     }
 }
 
