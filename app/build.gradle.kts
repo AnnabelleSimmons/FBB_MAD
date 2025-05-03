@@ -55,7 +55,9 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
     implementation("com.google.firebase:firebase-auth:22.0.0")
     implementation ("com.google.code.gson:gson:2.8.9")
- //   implementation("com.google.firebase:firebase-auth-ktx:23.2.0")
+    implementation ("androidx.cardview:cardview:1.0.0")
+
+    //   implementation("com.google.firebase:firebase-auth-ktx:23.2.0")
     //implementation("com.google.firebase:firebase-auth:22.3.0")
 //    implementation("com.google.firebase:firebase-auth-ktx:22.3.0")
 

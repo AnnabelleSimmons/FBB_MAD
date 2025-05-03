@@ -40,12 +40,21 @@ class BudgetCreationscreen : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val newBudget = Budget(budgetName, budgetAmount.toDouble())
+            // Parse amount safely
+            val amountDouble = budgetAmount.toDoubleOrNull()
+            if (amountDouble == null) {
+                Toast.makeText(this, "Invalid amount entered!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Format as currency
+            val formattedAmount = String.format("$%.2f", amountDouble)
+            val newBudget = Budget(budgetName, amountDouble)
 
             // Save the new budget
             saveBudgetToSharedPreferences(newBudget)
 
-            Toast.makeText(this, "Budget \"$budgetName\" with \$$budgetAmount created!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Budget \"$budgetName\" with $formattedAmount created!", Toast.LENGTH_LONG).show()
 
             // Clear the input fields
             budgetNameInput.text.clear()
@@ -54,19 +63,19 @@ class BudgetCreationscreen : AppCompatActivity() {
     }
 
     private fun saveBudgetToSharedPreferences(budget: Budget) {
-        val sharedPreferences = getSharedPreferences("BudgetPreferences", Context.MODE_PRIVATE) // <-- MATCH ViewScreen
+        val sharedPreferences = getSharedPreferences("BudgetPreferences", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         val gson = Gson()
 
-        // MIGRATION: wipe bad old data if needed
-        val allPrefs = sharedPreferences.all
-        val rawBudgets = allPrefs["budgets"]
-        if (rawBudgets is Set<*>) {
-            // Old bad data found, nuke it
-            sharedPreferences.edit().remove("budgets").apply()
-        }
+//        // MIGRATION: wipe bad old data if needed
+//        val allPrefs = sharedPreferences.all
+//        val rawBudgets = allPrefs["budgets"]
+//        if (rawBudgets is Set<*>) {
+//            // Old bad data found, nuke it
+//            sharedPreferences.edit().remove("budgets").apply()
+//        }
 
-        // Now safely try to load existing budgets
+        // Load existing budgets safely
         val existingJson = sharedPreferences.getString("budgets", "[]")
         val listType = object : TypeToken<MutableList<Budget>>() {}.type
         val existingBudgets: MutableList<Budget> = gson.fromJson(existingJson, listType) ?: mutableListOf()
