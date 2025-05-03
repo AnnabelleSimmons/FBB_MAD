@@ -16,8 +16,10 @@ class LoginScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        enableEdgeToEdge()  // Enable edge-to-edge layout
         setContentView(R.layout.activity_login_screen)
+
+        // Adjust padding based on system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.activity_login_screen)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -27,28 +29,32 @@ class LoginScreen : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
-        val loginButton = findViewById<Button>(R.id.submitButton2)  // Use the correct ID here
-        val emailEditText = findViewById<EditText>(R.id.registeremail)
-        val passwordEditText = findViewById<EditText>(R.id.registerpassword)
+        val loginButton = findViewById<Button>(R.id.submitButton2)  // Get login button
+        val emailEditText = findViewById<EditText>(R.id.registeremail)  // Get email input
+        val passwordEditText = findViewById<EditText>(R.id.registerpassword)  // Get password input
 
+        // Set click listener for login button
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
 
+            // Check if email and password are entered
             if (email.isNotEmpty() && password.isNotEmpty()) {
+                // Attempt login with Firebase
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            // Login successful, navigate to the home screen
+                            // On success, navigate to home screen
                             val intent = Intent(this, HomeBaseScreen::class.java)
                             startActivity(intent)
-                            finish()
+                            finish()  // Close login screen
                         } else {
-                            // If sign-in fails, display a message to the user.
+                            // On failure, show authentication error
                             Toast.makeText(baseContext, "Authentication Failed.", Toast.LENGTH_SHORT).show()
                         }
                     }
             } else {
+                // Prompt user if fields are empty
                 Toast.makeText(this, "Please enter both email and password.", Toast.LENGTH_SHORT).show()
             }
         }

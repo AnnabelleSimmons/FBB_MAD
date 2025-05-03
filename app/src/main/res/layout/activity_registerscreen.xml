@@ -8,6 +8,7 @@
     android:background="#FFFFFF"
     tools:context=".registerscreen">
 
+    <!-- Password input field -->
     <EditText
         android:id="@+id/registerpassword"
         android:layout_width="209dp"
@@ -23,6 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
+    <!-- Welcome text at the top of the screen -->
     <TextView
         android:id="@+id/textView2"
         android:layout_width="262dp"
@@ -40,6 +42,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
+    <!-- Email input field -->
     <EditText
         android:id="@+id/registeremail"
         android:layout_width="211dp"
@@ -57,6 +60,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
+    <!-- Submit button -->
     <Button
         android:id="@+id/submitButton"
         android:layout_width="119dp"
@@ -74,6 +78,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerpassword" />
 
+    <!-- Logo image at the top -->
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="188dp"
@@ -85,4 +90,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

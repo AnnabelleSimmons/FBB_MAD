@@ -16,8 +16,10 @@ class RegisterScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        enableEdgeToEdge()  // Enables edge-to-edge display
         setContentView(R.layout.activity_registerscreen)
+
+        // Adjust padding for system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.activity_registerscreen)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -31,24 +33,27 @@ class RegisterScreen : AppCompatActivity() {
         val emailEditText = findViewById<EditText>(R.id.registeremail)
         val passwordEditText = findViewById<EditText>(R.id.registerpassword)
 
+        // Submit button click listener
         submitButton.setOnClickListener {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
 
+            // Check if both fields are filled
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            // Registration successful, navigate to the home screen
+                            // Registration successful, go to home screen
                             val intent = Intent(this, HomeBaseScreen::class.java)
                             startActivity(intent)
                             finish()
                         } else {
-                            // If registration fails, display a message to the user.
+                            // Registration failed, show a toast
                             Toast.makeText(baseContext, "Registration Failed.", Toast.LENGTH_SHORT).show()
                         }
                     }
             } else {
+                // Display error if fields are empty
                 Toast.makeText(this, "Please enter both email and password.", Toast.LENGTH_SHORT).show()
             }
         }

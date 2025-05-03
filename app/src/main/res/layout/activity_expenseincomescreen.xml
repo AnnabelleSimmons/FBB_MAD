@@ -8,6 +8,7 @@
     android:background="#FFFFFF"
     tools:context=".MainActivity">
 
+    <!-- CheckBox for selecting "Income" -->
     <CheckBox
         android:id="@+id/checkexpense2"
         android:layout_width="130dp"
@@ -25,6 +26,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7"
         app:layout_constraintVertical_bias="0.484" />
 
+    <!-- Main TextView that greets the user -->
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
@@ -41,6 +43,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- CheckBox for selecting "Expense" -->
     <CheckBox
         android:id="@+id/checkexpense"
         android:layout_width="125dp"
@@ -58,6 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7"
         app:layout_constraintVertical_bias="0.0" />
 
+    <!-- EditText for entering the Amount -->
     <EditText
         android:id="@+id/amountinput"
         android:layout_width="208dp"
@@ -73,6 +77,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkexpense2" />
 
+    <!-- EditText for entering the Budget name -->
     <EditText
         android:id="@+id/budgetinput"
         android:layout_width="211dp"
@@ -90,6 +95,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/amountinput" />
 
+    <!-- Button to submit the data -->
     <Button
         android:id="@+id/submitButton"
         android:layout_width="119dp"
@@ -104,6 +110,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/budgetinput" />
 
+    <!-- ImageView to display the logo -->
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="218dp"
@@ -117,6 +124,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/budgetpal" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,7 @@
     android:backgroundTint="@color/white"
     tools:context=".MainActivity">
 
-
+    <!-- Register button with styling and constraints -->
     <Button
         android:id="@+id/registerbutton"
         android:layout_width="115dp"
@@ -29,6 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginbutton" />
 
+    <!-- Welcome text at the top -->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -43,6 +44,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.337" />
 
+    <!-- Login button with styling and constraints -->
     <Button
         android:id="@+id/loginbutton"
         android:layout_width="115dp"
@@ -62,6 +64,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+    <!-- ImageView for logo -->
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="203dp"

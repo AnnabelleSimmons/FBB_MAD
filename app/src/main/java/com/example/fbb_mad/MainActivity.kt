@@ -11,41 +11,41 @@ import androidx.core.view.WindowInsetsCompat
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        enableEdgeToEdge()  // Enable edge-to-edge layout
         setContentView(R.layout.activity_main)
 
-        // Reference the root layout by the correct ID (activity_main)
+        // Get the root layout
         val rootView = findViewById<android.view.View>(R.id.activity_main)
 
-        // Set onApplyWindowInsetsListener to adjust padding based on system bars
+        // Adjust padding based on system bars
         ViewCompat.setOnApplyWindowInsetsListener(rootView) { v, insets ->
-            // Apply padding based on system bars insets
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-
-            // Return the insets
             insets
         }
 
-        // Set onClickListener for the login button
+        // Login button click listener
         val loginButton = findViewById<Button>(R.id.loginbutton)
         loginButton.setOnClickListener {
-            navigateToLoginScreen()
+            navigateToLoginScreen()  // Go to LoginScreen
         }
 
+        // Register button click listener
         val registerButton = findViewById<Button>(R.id.registerbutton)
         registerButton.setOnClickListener {
-            navigateToRegisterScreen()
+            navigateToRegisterScreen()  // Go to RegisterScreen
         }
     }
 
+    // Navigate to LoginScreen
     private fun navigateToLoginScreen() {
         val intent = Intent(this, LoginScreen::class.java)
         startActivity(intent)
     }
 
+    // Navigate to RegisterScreen
     private fun navigateToRegisterScreen() {
-        val intent = Intent(this, RegisterScreen::class.java)  // Corrected class name
+        val intent = Intent(this, RegisterScreen::class.java)
         startActivity(intent)
     }
 }

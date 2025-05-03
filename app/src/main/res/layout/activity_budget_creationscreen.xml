@@ -8,6 +8,7 @@
     android:background="#FFFFFF"
     tools:context=".BudgetCreationscreen">
 
+    <!-- Instruction Text for deleting a budget -->
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
@@ -24,6 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Header Text for the delete budget section -->
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
@@ -39,6 +41,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Button to delete a budget -->
     <Button
         android:id="@+id/deleteBudgetButton"
         android:layout_width="140dp"
@@ -54,6 +57,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
+    <!-- Header Text for creating a new budget -->
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -69,7 +73,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Amount Input Field -->
+    <!-- Input field for budget amount -->
     <EditText
         android:id="@+id/amountinput"
         android:layout_width="222dp"
@@ -89,7 +93,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <!-- Budget Name Input Field -->
+    <!-- Input field for new budget name -->
     <EditText
         android:id="@+id/budgetinput"
         android:layout_width="211dp"
@@ -107,7 +111,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/amountinput" />
 
-    <!-- Create Budget Button -->
+    <!-- Button to create a new budget -->
     <Button
         android:id="@+id/createbudgetbutton"
         android:layout_width="118dp"
@@ -128,7 +132,7 @@
         app:layout_constraintTop_toBottomOf="@+id/budgetinput"
         app:layout_constraintVertical_bias="0.0" />
 
-    <!-- Image for the Screen -->
+    <!-- Logo displayed on the screen -->
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="244dp"

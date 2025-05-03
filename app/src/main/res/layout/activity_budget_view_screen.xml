@@ -8,6 +8,7 @@
     android:background="#FFFFFF"
     tools:context=".BudgetViewScreen">
 
+    <!-- Title TextView for the app header -->
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
@@ -24,6 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Budget data container with vertical layout -->
     <LinearLayout
         android:id="@+id/BudgetData"
         android:layout_width="354dp"
@@ -39,6 +41,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7">
 
+        <!-- TextView to display budget details -->
         <TextView
             android:id="@+id/budgetItem1"
             android:layout_width="wrap_content"
@@ -52,7 +55,7 @@
 
 
     </LinearLayout>
-
+    <!-- ImageView displaying app logo -->
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="210dp"
