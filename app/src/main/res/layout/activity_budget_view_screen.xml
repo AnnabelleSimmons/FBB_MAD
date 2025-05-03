@@ -16,6 +16,7 @@
         android:layout_marginTop="168dp"
         android:layout_marginEnd="101dp"
         android:text="Your Friendly Neighborhood Budgeting App"
+        android:textColor="#0F0E0E"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

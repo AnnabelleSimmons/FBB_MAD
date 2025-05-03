@@ -30,6 +30,7 @@ class BudgetCreationscreen : AppCompatActivity() {
         val budgetNameInput = findViewById<EditText>(R.id.budgetinput)
         val budgetAmountInput = findViewById<EditText>(R.id.amountinput)
         val createButton = findViewById<Button>(R.id.createbudgetbutton)
+        val deleteButton = findViewById<Button>(R.id.deleteBudgetButton)
 
         createButton.setOnClickListener {
             val budgetName = budgetNameInput.text.toString().trim()
@@ -42,16 +43,16 @@ class BudgetCreationscreen : AppCompatActivity() {
 
             // Parse amount safely
             val amountDouble = budgetAmount.toDoubleOrNull()
-            if (amountDouble == null) {
-                Toast.makeText(this, "Invalid amount entered!", Toast.LENGTH_SHORT).show()
+            if (amountDouble == null || amountDouble < 0) {
+                Toast.makeText(this, "Invalid or negative amount entered!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Format as currency
-            val formattedAmount = String.format("$%.2f", amountDouble)
-            val newBudget = Budget(budgetName, amountDouble)
+            // Ensure the amount has exactly two decimal places
+            val formattedAmount = String.format("%.2f", amountDouble)
 
             // Save the new budget
+            val newBudget = Budget(budgetName, formattedAmount.toDouble())
             saveBudgetToSharedPreferences(newBudget)
 
             Toast.makeText(this, "Budget \"$budgetName\" with $formattedAmount created!", Toast.LENGTH_LONG).show()
@@ -60,20 +61,56 @@ class BudgetCreationscreen : AppCompatActivity() {
             budgetNameInput.text.clear()
             budgetAmountInput.text.clear()
         }
+
+        deleteButton.setOnClickListener {
+            val budgetName = budgetNameInput.text.toString().trim()
+
+            if (budgetName.isEmpty()) {
+                Toast.makeText(this, "Please enter a budget name to delete.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val budgets = getBudgetsFromSharedPreferences()
+            val selectedBudget = budgets.find { it.name == budgetName }
+
+            if (selectedBudget == null) {
+                Toast.makeText(this, "Budget not found.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Show confirmation dialog for deleting the budget
+            showDeleteConfirmationDialog(budgetName, budgets)
+        }
+    }
+
+    private fun showDeleteConfirmationDialog(budgetName: String, budgets: List<Budget>) {
+        val dialog = android.app.AlertDialog.Builder(this)
+            .setTitle("Confirm Deletion")
+            .setMessage("Are you sure you want to delete the budget: $budgetName?")
+            .setPositiveButton("Yes") { _, _ ->
+                val updatedBudgets = budgets.filterNot { it.name == budgetName }
+                saveBudgetsToSharedPreferences(updatedBudgets)
+                Toast.makeText(this, "Budget '$budgetName' deleted successfully.", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+
+        dialog.show()
+    }
+
+    private fun getBudgetsFromSharedPreferences(): List<Budget> {
+        val sharedPreferences = getSharedPreferences("BudgetPreferences", Context.MODE_PRIVATE)
+        val gson = Gson()
+        val json = sharedPreferences.getString("budgets", "[]")
+        return gson.fromJson(json, Array<Budget>::class.java).toList()
     }
 
     private fun saveBudgetToSharedPreferences(budget: Budget) {
         val sharedPreferences = getSharedPreferences("BudgetPreferences", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         val gson = Gson()
-
-//        // MIGRATION: wipe bad old data if needed
-//        val allPrefs = sharedPreferences.all
-//        val rawBudgets = allPrefs["budgets"]
-//        if (rawBudgets is Set<*>) {
-//            // Old bad data found, nuke it
-//            sharedPreferences.edit().remove("budgets").apply()
-//        }
 
         // Load existing budgets safely
         val existingJson = sharedPreferences.getString("budgets", "[]")
@@ -84,6 +121,15 @@ class BudgetCreationscreen : AppCompatActivity() {
 
         // Save the updated list back
         editor.putString("budgets", gson.toJson(existingBudgets))
+        editor.apply()
+    }
+
+    private fun saveBudgetsToSharedPreferences(budgets: List<Budget>) {
+        val sharedPreferences = getSharedPreferences("BudgetPreferences", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        val gson = Gson()
+        val json = gson.toJson(budgets)
+        editor.putString("budgets", json)
         editor.apply()
     }
 }

@@ -9,6 +9,52 @@
     tools:context=".BudgetCreationscreen">
 
     <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="576dp"
+        android:layout_marginEnd="101dp"
+        android:text="Insert Budget Name Above and Hit Delete "
+        android:textColor="#070707"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="540dp"
+        android:layout_marginEnd="101dp"
+        android:text="Delete a Budget :( "
+        android:textColor="#070707"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/deleteBudgetButton"
+        android:layout_width="140dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="9dp"
+        android:backgroundTint="#B9CE8D"
+        android:text="Delete Budget"
+        android:textColor="#040404"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,6 +69,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Amount Input Field -->
     <EditText
         android:id="@+id/amountinput"
         android:layout_width="222dp"
@@ -32,14 +79,17 @@
         android:layout_marginEnd="102dp"
         android:layout_marginBottom="32dp"
         android:ems="10"
-        android:inputType="number|numberDecimal"
-        android:text="Budget Allotment"
+        android:inputType="numberDecimal"
+        android:hint="Enter Budget Allotment"
+        android:text=""
+        android:importantForAccessibility="yes"
         app:layout_constraintBottom_toTopOf="@+id/budgetinput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.363"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
+    <!-- Budget Name Input Field -->
     <EditText
         android:id="@+id/budgetinput"
         android:layout_width="211dp"
@@ -49,12 +99,15 @@
         android:layout_marginEnd="102dp"
         android:ems="10"
         android:inputType="text"
-        android:text="New Budget Name"
+        android:hint="Enter New Budget Name"
+        android:text=""
+        android:importantForAccessibility="yes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/amountinput" />
 
+    <!-- Create Budget Button -->
     <Button
         android:id="@+id/createbudgetbutton"
         android:layout_width="118dp"
@@ -66,7 +119,6 @@
         android:backgroundTint="#B9CE8D"
         android:text="Create"
         android:textColor="#090909"
-        android:textColorLink="#090909"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -76,6 +128,7 @@
         app:layout_constraintTop_toBottomOf="@+id/budgetinput"
         app:layout_constraintVertical_bias="0.0" />
 
+    <!-- Image for the Screen -->
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="244dp"
@@ -91,5 +144,4 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/budgetpal" />
 
-    <!-- Added a new EditText for password input (registerpassword) -->
 </androidx.constraintlayout.widget.ConstraintLayout>

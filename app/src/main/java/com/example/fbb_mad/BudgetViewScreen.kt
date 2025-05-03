@@ -30,8 +30,9 @@ class BudgetViewScreen : AppCompatActivity() {
             insets
         }
 
-        // Retrieve budgets from SharedPreferences with error handling
-        val budgets = getBudgetsFromSharedPreferences()
+        // Retrieve budgets from SharedPreferences with error handling and put them in alphabetical order
+        val budgets = getBudgetsFromSharedPreferences().sortedBy { it.name.lowercase() }
+
 
         // Get the LinearLayout to populate
         val linearLayout = findViewById<LinearLayout>(R.id.BudgetData)
@@ -46,7 +47,12 @@ class BudgetViewScreen : AppCompatActivity() {
             for (budget in budgets) {
                 // Create a new TextView for each budget
                 val budgetText = TextView(this)
-                budgetText.text = "${budget.name}: \$${budget.amountLeft}"
+
+                // Always format the amount to 2 decimal places
+                val formattedAmount = String.format("$%.2f", budget.amountLeft)
+
+                // Set the text for the budget item with the formatted amount
+                budgetText.text = "${budget.name}: $formattedAmount"
 
                 // Add the created TextView to the LinearLayout
                 linearLayout.addView(budgetText)

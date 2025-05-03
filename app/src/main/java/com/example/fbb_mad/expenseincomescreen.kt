@@ -26,7 +26,6 @@ class expenseincomescreen : AppCompatActivity() {
         val amountInput = findViewById<EditText>(R.id.amountinput)
         val budgetInput = findViewById<EditText>(R.id.budgetinput)
         val submitButton = findViewById<Button>(R.id.submitButton)
-        val deleteBudgetButton = findViewById<Button>(R.id.deleteBudgetButton)
 
         checkExpense.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) checkIncome.isChecked = false
@@ -36,7 +35,7 @@ class expenseincomescreen : AppCompatActivity() {
         }
 
         submitButton.setOnClickListener {
-            val amountText = amountInput.text.toString()
+            val amountText = amountInput.text.toString().replace(',', '.').trim()
             val budgetName = budgetInput.text.toString().trim()
 
             if (amountText.isEmpty() || budgetName.isEmpty()) {
@@ -44,17 +43,9 @@ class expenseincomescreen : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val normalizedAmountText = amountText.replace(',', '.')
-
-            val decimalPattern = Regex("""^\d+(\.\d{2,2})?$""")
-            if (!decimalPattern.matches(normalizedAmountText)) {
-                showToast("Only up to 2 decimal places allowed.")
-                return@setOnClickListener
-            }
-
-            val amount = normalizedAmountText.toDoubleOrNull()
+            val amount = amountText.toDoubleOrNull()
             if (amount == null || amount <= 0) {
-                showToast("Please enter a valid amount.")
+                showToast("Please enter a valid positive number.")
                 return@setOnClickListener
             }
 
@@ -92,25 +83,6 @@ class expenseincomescreen : AppCompatActivity() {
             checkExpense.isChecked = false
             checkIncome.isChecked = false
         }
-
-        deleteBudgetButton.setOnClickListener {
-            val budgetName = budgetInput.text.toString().trim()
-
-            if (budgetName.isEmpty()) {
-                showToast("Please select a budget to delete.")
-                return@setOnClickListener
-            }
-
-            val budgets = getBudgetsFromSharedPreferences()
-            val selectedBudget = budgets.find { it.name == budgetName }
-
-            if (selectedBudget == null) {
-                showToast("Budget not found.")
-                return@setOnClickListener
-            }
-
-            showConfirmationDialog(budgetName, budgets)
-        }
     }
 
     private fun showToast(message: String) {
@@ -131,23 +103,6 @@ class expenseincomescreen : AppCompatActivity() {
         val json = gson.toJson(budgets)
         editor.putString("budgets", json)
         editor.apply()
-    }
-
-    private fun showConfirmationDialog(budgetName: String, budgets: List<Budget>) {
-        val dialog = android.app.AlertDialog.Builder(this)
-            .setTitle("Confirm Deletion")
-            .setMessage("Are you sure you want to delete the budget: $budgetName?")
-            .setPositiveButton("Yes") { _, _ ->
-                val updatedBudgets = budgets.filterNot { it.name == budgetName }
-                saveBudgetsToSharedPreferences(updatedBudgets)
-                showToast("Budget '$budgetName' deleted successfully.")
-            }
-            .setNegativeButton("No") { dialog, _ ->
-                dialog.dismiss()
-            }
-            .create()
-
-        dialog.show()
     }
 }
 
